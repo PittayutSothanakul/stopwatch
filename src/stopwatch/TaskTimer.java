@@ -15,9 +15,11 @@ public class TaskTimer {
 	 */
 	public void measureAndPrint(Runnable runnable) {
 		Stopwatch timer = new Stopwatch();
+		
 		timer.start();
 		runnable.run();
 		timer.stop();
+		
 		System.out.println(runnable.toString());
 		System.out.printf("Elapsed time %.6f sec\n\n", timer.getElapsed());
 

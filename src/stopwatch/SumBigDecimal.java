@@ -13,6 +13,7 @@ public class SumBigDecimal implements Runnable {
 	private int counter;
 	static BigDecimal sum = new BigDecimal(0.0);
 	static final int ARRAY_SIZE = 500000;
+	BigDecimal[] values = new BigDecimal[ARRAY_SIZE];
 
 	/**
 	 * SumBigDecimal with counter.
@@ -22,16 +23,17 @@ public class SumBigDecimal implements Runnable {
 	 */
 	public SumBigDecimal(int counter) {
 		this.counter = counter;
+		for (int i = 0; i < ARRAY_SIZE; i++) {
+			values[i] = new BigDecimal(i + 1);
+		}
 	}
 
 	/**
 	 * Add number form 1 to ARRAY_SIZE with BigDecimal class.
 	 */
+
 	@Override
 	public void run() {
-		BigDecimal[] values = new BigDecimal[ARRAY_SIZE];
-		for (int i = 0; i < ARRAY_SIZE; i++)
-			values[i] = new BigDecimal(i + 1);
 
 		for (int count = 0, i = 0; count < counter; count++, i++) {
 			if (i >= values.length)

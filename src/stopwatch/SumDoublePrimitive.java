@@ -11,6 +11,7 @@ public class SumDoublePrimitive implements Runnable {
 	private int counter;
 	private double sum;
 	static final int ARRAY_SIZE = 500000;
+	double[] values = new double[ARRAY_SIZE];
 
 	/**
 	 * SumDoublePrimitive with counter.
@@ -20,7 +21,11 @@ public class SumDoublePrimitive implements Runnable {
 	 */
 	public SumDoublePrimitive(int counter) {
 		this.counter = counter;
+		for (int k = 0; k < ARRAY_SIZE; k++) {
+			values[k] = k + 1;
 
+			sum = 0.0;
+		}
 	}
 
 	/**
@@ -28,11 +33,6 @@ public class SumDoublePrimitive implements Runnable {
 	 */
 	@Override
 	public void run() {
-		double[] values = new double[ARRAY_SIZE];
-		for (int k = 0; k < ARRAY_SIZE; k++)
-			values[k] = k + 1;
-
-		sum = 0.0;
 
 		for (int count = 0, i = 0; count < counter; count++, i++) {
 			if (i >= values.length)

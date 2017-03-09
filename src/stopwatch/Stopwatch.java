@@ -34,8 +34,14 @@ public class Stopwatch {
 	 * @return the values of elapsed.
 	 */
 	public double getElapsed() {
-		elapsed = NANOSECONDS * (stop - start);
+
+		if (!running) {
+			elapsed = NANOSECONDS * (stop - start);
+		} else {
+			elapsed = NANOSECONDS * (System.nanoTime() - start);
+		}
 		return elapsed;
+
 	}
 
 	/**
@@ -52,9 +58,10 @@ public class Stopwatch {
 	 * method start count time if stopwatch is started.
 	 */
 	public void start() {
-
-		start = System.nanoTime();
-		running = true;
+		if (!running) {
+			start = System.nanoTime();
+			running = true;
+		}
 
 	}
 
@@ -62,9 +69,10 @@ public class Stopwatch {
 	 * method stop count time if stopwatch is stopped.
 	 */
 	public void stop() {
-
-		stop = System.nanoTime();
-		running = false;
+		if (running) {
+			stop = System.nanoTime();
+			running = false;
+		}
 
 	}
 
